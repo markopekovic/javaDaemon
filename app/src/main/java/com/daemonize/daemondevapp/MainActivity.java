@@ -591,7 +591,6 @@ public class MainActivity extends AppCompatActivity {
         });
         backgroundScrollerDaemon.start();
 
-
         joystickViewLeft = findViewById(R.id.joystickLeft);
         joystickViewLeft.setOnMoveListener((angle, strength) -> {
             if (strength > 0) {
