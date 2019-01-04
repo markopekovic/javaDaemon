@@ -315,9 +315,17 @@ public class MainActivity extends AppCompatActivity {
             listNumberImg[9] = new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("9.png")), numWidth, numHeight, false));
 
             Image [] dialogUpgradeTower1 = new Image[3];
-            dialogUpgradeTower1[0] = new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("mgDialog22.png")), 800, 530, false));
-            dialogUpgradeTower1[1] = new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("mgDialog33.png")), 800, 530, false));
-            dialogUpgradeTower1[2] = new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("mgDialogTOP.png")), 800, 530, false));
+            dialogUpgradeTower1[0] = new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("mgleve2.png")), 800, 530, false));
+            dialogUpgradeTower1[1] = new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("mgleve3.png")), 800, 530, false));
+            dialogUpgradeTower1[2] = new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("mgleveTOP.png")), 800, 530, false));
+            Image [] dialogUpgradeTower2 = new Image[3];
+            dialogUpgradeTower2[0] = new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("rcleve2.png")), 800, 530, false));
+            dialogUpgradeTower2[1] = new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("rcleve3.png")), 800, 530, false));
+            dialogUpgradeTower2[2] = new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("rcleveTOP.png")), 800, 530, false));
+            Image [] dialogUpgradeTower3 = new Image[3];
+            dialogUpgradeTower3[0] = new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("lsleve2.png")), 800, 530, false));
+            dialogUpgradeTower3[1] = new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("lsleve3.png")), 800, 530, false));
+            dialogUpgradeTower3[2] = new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("lsleveTOP.png")), 800, 530, false));
 //            dialogUpgradeTower1[2] = new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("2.png")), 650, 390, false));
 //            new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("upgradeDialog.png")),650,390,false))
 
@@ -343,7 +351,7 @@ public class MainActivity extends AppCompatActivity {
                     .setGreenTower(greenTowerI, greenTowerII, greenTowerIII)
                     .setHealthBarSprite(listHealthBarImg)
                     .setBorders(borderX, borderY)
-                    .setDialogueImageTowerUpgradeLevel(dialogUpgradeTower1)
+                    .setUpgradeTowerDialogue(dialogUpgradeTower1, dialogUpgradeTower2, dialogUpgradeTower3)
                     .setUpgradeButtonImage(new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("UPGRADE.png")),250,90,false)))
                     .setCloseButtonImage(new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("CLOSE.png")),250,90,false)))
                     .setDialogue(new AndroidBitmapImage(Bitmap.createScaledBitmap(red, dialog.getWidth(), dialog.getHeight(), false))/*dialog*/)

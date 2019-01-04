@@ -71,7 +71,7 @@ public class Game {
     private Image fieldImageTower;
     private Image fieldImageTowerDen;
     private Image dialogueImage;
-    private Image [] dialogueImageTowerUpgradeLevel;
+    private Image [] dialogueImageTowerUpgrade;
     private Image upgradeButtonImage;
     private Image closeButtonImage;
     private Image nestedRedDialogueImage;
@@ -94,6 +94,10 @@ public class Game {
     private List<Image[]> redTower;
     private List<Image[]> blueTower;
     private List<Image[]> greenTower;
+
+    private Image[] redTowerUpgDialoge;
+    private Image[] blueTowerUpgDialoge;
+    private Image[] greenTowerUpgDialoge;
 
 
     //towers dialogue
@@ -360,7 +364,7 @@ public class Game {
                 if (towerView == null)
                     throw new IllegalStateException("towerView == null");
 
-                drawConsumer.consume(()->towerView.setImage(dialogueImageTowerUpgradeLevel[tow.getTowerLevel().currentLevel - 1]));
+                drawConsumer.consume(()->towerView.setImage(dialogueImageTowerUpgrade[tow.getTowerLevel().currentLevel - 1]));
                 if (score > 2 && tow.getTowerLevel().currentLevel < 3)
                     towerUpgradeDialog.getTowerUpgrade().getViewByName("Upgrade").show();
                 else
@@ -377,7 +381,7 @@ public class Game {
             });
 
             towerUpgradeDialog =  new TowerUpgradeDialog(700,500,
-                   dialogueImageTowerUpgradeLevel[0], upgradeButton, closeButton, 810, 600 );//.setOnUpgrade(()->{
+                   dialogueImageTowerUpgrade[0], upgradeButton, closeButton, 810, 600 );//.setOnUpgrade(()->{
 
             Button tow1 = new Button("TowerType1",0,0,redTower.get(0)[0]).onClick(()->{
                 towerSelect = Tower.TowerType.TYPE1;
@@ -718,14 +722,27 @@ public class Game {
                 //pauseAll();
                 Tower.TowerLevel currLvl = tow.getTowerLevel();
                 towerUpgradeDialog.setTower(tow.getPrototype());
+
                 boolean hasSkillsToPayTheBills = score > 3;
+
+                switch (tow.getTowertype()){
+                    case TYPE1:
+                        dialogueImageTowerUpgrade = redTowerUpgDialoge;
+                        break;
+                    case TYPE2:
+                        dialogueImageTowerUpgrade = blueTowerUpgDialoge;
+                        break;
+                    case TYPE3:
+                        dialogueImageTowerUpgrade = greenTowerUpgDialoge;
+                        break;
+                }
 
                 drawConsumer.consume(()->{
                     towerUpgradeDialog.getTowerUpgrade().setAbsoluteX(borderX / 2);
                     towerUpgradeDialog.getTowerUpgrade().setAbsoluteY(borderY / 2);
 
                     towerUpgradeDialog.getTowerUpgrade().getViewByName("TowerView")
-                            .setImage(dialogueImageTowerUpgradeLevel[currLvl.currentLevel - 1]);
+                            .setImage(dialogueImageTowerUpgrade[currLvl.currentLevel - 1]);
 
                     towerUpgradeDialog.getTowerUpgrade().show();
                     if (hasSkillsToPayTheBills && tow.getTowerLevel().currentLevel < 3)
@@ -1006,10 +1023,10 @@ public class Game {
         return this;
     }
 
-    public Game setDialogueImageTowerUpgradeLevel(Image[] dialogueImageTowerUpgradeLevel) {
-        this.dialogueImageTowerUpgradeLevel = dialogueImageTowerUpgradeLevel;
-        return this;
-    }
+//    public Game setDialogueImageTowerUpgradeLevel(Image[] dialogueImageTowerUpgrade) {
+//        this.dialogueImageTowerUpgrade = dialogueImageTowerUpgrade;
+//        return this;
+//    }
 
     public Game setUpgradeButtonImage(Image upgradeButtonImage) {
         this.upgradeButtonImage = upgradeButtonImage;
@@ -1061,11 +1078,20 @@ public class Game {
         greenTower.add(towerIII);
         return this;
     }
+
     public Game setRedTower(Image[] towerI,Image[] towerII,Image[] towerIII){
         redTower = new ArrayList<>(3);
         redTower.add(towerI);
         redTower.add(towerII);
         redTower.add(towerIII);
+        return this;
+    }
+
+    public Game setUpgradeTowerDialogue(Image[] upgDialogTowerI,Image[] upgDialogTowerII,Image[] upgDialogTowerIII){
+        redTowerUpgDialoge = upgDialogTowerI;
+        blueTowerUpgDialoge = upgDialogTowerII;
+        greenTowerUpgDialoge = upgDialogTowerIII;
+        dialogueImageTowerUpgrade =  redTowerUpgDialoge;
         return this;
     }
 
