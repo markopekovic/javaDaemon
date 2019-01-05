@@ -70,14 +70,11 @@ public class Game {
     private Image fieldImage;
     private Image fieldImageTower;
     private Image fieldImageTowerDen;
-    private Image dialogueImage;
     private Image [] dialogueImageTowerUpgrade;
     private Image upgradeButtonImage;
+    private Image saleButtonImage;
     private Image closeButtonImage;
-    private Image nestedRedDialogueImage;
-//    private Image greenDialogueImage;
     private Image scoreBackGrImage;
-    //private Image scoreTitle;
     private Image[] scorenumbersImages;
 
     private boolean pause;
@@ -346,7 +343,7 @@ public class Game {
                 Tower tow = towerUpgradeDialog.getTower();
                 tow.levelUp();
                 Image[] currentSprite = null;
-                switch (tow.getTowertype()){
+                switch (tow.getTowertype()) {
                     case TYPE1:
                         currentSprite = redTower.get(tow.getTowerLevel().currentLevel - 1);
                         break;
@@ -375,13 +372,24 @@ public class Game {
 
             });
 
+
             Button closeButton = new Button("Close", 0, 0, closeButtonImage).onClick(()->{
+                drawConsumer.consume(()->towerUpgradeDialog.getTowerUpgrade().hide());
+            });
+
+            Button saleButton = new Button("Sale", 0, 0, saleButtonImage).onClick(()->{
                 //contAll();
+
+                Field field = grid.getField(towerUpgradeDialog.getTower().getLastCoordinates().getFirst(), towerUpgradeDialog.getTower().getLastCoordinates().getSecond());
+                field.getTower().stop();
+                field.setTower(null);
+                boolean b = grid.destroyTower(field.getRow(), field.getColumn());
+                drawConsumer.consume(()-> gridViewMatrix[field.getRow()][field.getColumn()].setImage(fieldImage).show());
                 drawConsumer.consume(()->towerUpgradeDialog.getTowerUpgrade().hide());
             });
 
             towerUpgradeDialog =  new TowerUpgradeDialog(700,500,
-                   dialogueImageTowerUpgrade[0], upgradeButton, closeButton, 810, 600 );//.setOnUpgrade(()->{
+                   dialogueImageTowerUpgrade[0], upgradeButton, closeButton, saleButton, 810, 750 );//.setOnUpgrade(()->{
 
             Button tow1 = new Button("TowerType1",0,0,redTower.get(0)[0]).onClick(()->{
                 towerSelect = Tower.TowerType.TYPE1;
@@ -725,7 +733,7 @@ public class Game {
 
                 boolean hasSkillsToPayTheBills = score > 3;
 
-                switch (tow.getTowertype()){
+                switch (tow.getTowertype()) {
                     case TYPE1:
                         dialogueImageTowerUpgrade = redTowerUpgDialoge;
                         break;
@@ -1018,16 +1026,6 @@ public class Game {
         return this;
     }
 
-    public Game setDialogue(Image dialogueImage) {
-        this.dialogueImage = dialogueImage;
-        return this;
-    }
-
-//    public Game setDialogueImageTowerUpgradeLevel(Image[] dialogueImageTowerUpgrade) {
-//        this.dialogueImageTowerUpgrade = dialogueImageTowerUpgrade;
-//        return this;
-//    }
-
     public Game setUpgradeButtonImage(Image upgradeButtonImage) {
         this.upgradeButtonImage = upgradeButtonImage;
         return this;
@@ -1038,8 +1036,8 @@ public class Game {
         return this;
     }
 
-    public Game setRedNestedDialogue(Image nestedRedDialogueImage) {
-        this.nestedRedDialogueImage = nestedRedDialogueImage;
+    public Game setSaleButtonImage(Image saleButtonImage) {
+        this.saleButtonImage = saleButtonImage;
         return this;
     }
 
@@ -1047,11 +1045,6 @@ public class Game {
         this.scoreBackGrImage = scoreBackGrImage;
         return this;
     }
-
-//    public Game setScoreTitle(Image scoreTitle) {
-//        this.scoreTitle = scoreTitle;
-//        return this;
-//    }
 
     public Game setScorenumbersImages(Image[] scorenumbersImages) {
         this.scorenumbersImages = scorenumbersImages;

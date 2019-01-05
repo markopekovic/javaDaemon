@@ -294,7 +294,6 @@ public class MainActivity extends AppCompatActivity {
             listHealthBarImg[8] = new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("health_bar_90.png")), width_hp, height_hp, false));
             listHealthBarImg[9] = new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("health_bar_100.png")), width_hp, height_hp, false));
 
-            Image dialog = new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("Atomic1.png")), 600, 500, false));
 
             Image score = new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("SmallBox.png")), 300, 150, false));
             Image titleScore = new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("HealthBar.png")), 300, 70, false));
@@ -352,10 +351,11 @@ public class MainActivity extends AppCompatActivity {
                     .setHealthBarSprite(listHealthBarImg)
                     .setBorders(borderX, borderY)
                     .setUpgradeTowerDialogue(dialogUpgradeTower1, dialogUpgradeTower2, dialogUpgradeTower3)
-                    .setUpgradeButtonImage(new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("UPGRADE.png")),250,90,false)))
-                    .setCloseButtonImage(new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("CLOSE.png")),250,90,false)))
-                    .setDialogue(new AndroidBitmapImage(Bitmap.createScaledBitmap(red, dialog.getWidth(), dialog.getHeight(), false))/*dialog*/)
-                    .setRedNestedDialogue(new AndroidBitmapImage(Bitmap.createScaledBitmap(red, dialog.getWidth() / 2, dialog.getHeight() / 2, false))/*dialog*/)
+                    .setUpgradeButtonImage(new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("ButtonUpgrade.png")),250,90,false)))
+                    .setCloseButtonImage(new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("ButtonX.png")),110,120,false)))
+                    .setSaleButtonImage(new AndroidBitmapImage(Bitmap.createScaledBitmap(BitmapFactory.decodeStream(getAssets().open("ButtonSale.png")),250,90,false)))
+//                    .setDialogue(new AndroidBitmapImage(Bitmap.createScaledBitmap(red, dialog.getWidth(), dialog.getHeight(), false))/*dialog*/)
+//                    .setRedNestedDialogue(new AndroidBitmapImage(Bitmap.createScaledBitmap(red, dialog.getWidth() / 2, dialog.getHeight() / 2, false))/*dialog*/)
 //                    .setGreenDialogue(new AndroidBitmapImage(Bitmap.createScaledBitmap(green, dialog.getWidth(), dialog.getHeight(), false))/*dialog*/)
 //                    .setGreenDialogue(new AndroidBitmapImage(Bitmap.createScaledBitmap(green, 660, 490, false))/*dialog*/)
 //                    .setSelectTowerBackgroudnImage(new AndroidBitmapImage(Bitmap.createScaledBitmap(red, 200, 600, false))/*dialog*/)

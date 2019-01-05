@@ -127,7 +127,7 @@ public class Grid {
 
     public boolean setTower(int row, int column) {
 
-//        gridLock.lock();
+    //  gridLock.lock();
         if (!grid[row][column].isWalkable() ) return false;
         if (row == grid.length - 1 && column == grid[row].length - 1) return false;
 
@@ -157,8 +157,33 @@ public class Grid {
         }
     }
 
+    public boolean destroyTower(float x, float y) {
+        int row = (int) ((y) / fieldWith);
+        int column = (int) ((x) / fieldWith);
 
-    public List<Field> getNeighbors(Field field) {
+        return destroyTower(row, column);
+    }
+
+    public boolean destroyTower(int row, int column) {
+
+        if (row == grid.length - 1 && column == grid[row].length - 1) return false;
+        boolean acceptDestroyTower = false;
+        if (!grid[row][column].isWalkable()) {
+            for (int i = 0; i < grid.length; i++) {
+                for (int j = 0; j < grid[0].length; j++) {
+                    Field field = new Field(grid[i][j]);
+//                    gridTemp[i][j] = field;
+                    grid[i][j].gCost = Integer.MAX_VALUE;
+                }
+            }
+            grid[row][column].setWalkable(true);
+            acceptDestroyTower = pathFinding.recalculate(this);
+        }
+        return acceptDestroyTower;
+    }
+
+
+        public List<Field> getNeighbors(Field field) {
         return getNeighbors(field.row, field.column);
     }
 
