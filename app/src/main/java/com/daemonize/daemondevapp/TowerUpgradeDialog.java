@@ -26,10 +26,11 @@ public class TowerUpgradeDialog {
         //this.dialogueImageTowerUpgrade = dialogueImageTowerUpgradeLevel;
         towerUpgrade = new CompositeImageViewImpl("Root", absX,absY,6, width, height);
         towerUpgrade.addChild(new CompositeImageViewImpl("TowerView", width / 2, height/ 2, dialogueImageTowerUpgrade));
-        towerUpgrade.addChild(upgradeButton.setRelativeX(dialogueImageTowerUpgrade.getWidth() - upgradeButton.getWidth() / 2)
-                                            .setRelativeY(height - upgradeButton.getHeight() / 2));
-        towerUpgrade.addChild(saleButton.setRelativeX(saleButton.getWidth() / 2).setRelativeY(height - saleButton.getHeight() / 2));
-        towerUpgrade.addChild(closeButton.setRelativeX(dialogueImageTowerUpgrade.getWidth() - closeButton.getWidth() / 2).setRelativeY(closeButton.getHeight() / 2));
+        float h = height / 2 + dialogueImageTowerUpgrade.getHeight()/2;
+        towerUpgrade.addChild(upgradeButton.setRelativeX(width - upgradeButton.getWidth() / 2)
+                                            .setRelativeY(h + upgradeButton.getHeight() / 2));
+        towerUpgrade.addChild(saleButton.setRelativeX(saleButton.getWidth() / 2).setRelativeY(h + saleButton.getHeight() / 2));
+        towerUpgrade.addChild(closeButton.setRelativeX(width - closeButton.getWidth() / 2).setRelativeY(closeButton.getHeight() / 2));
     }
 
     public CompositeImageViewImpl getTowerUpgrade() {
