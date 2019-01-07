@@ -384,8 +384,14 @@ public class Game {
                 field.getTower().stop();
                 field.setTower(null);
                 boolean b = grid.destroyTower(field.getRow(), field.getColumn());
-                drawConsumer.consume(()-> gridViewMatrix[field.getRow()][field.getColumn()].setImage(fieldImage).show());
-                drawConsumer.consume(()->towerUpgradeDialog.getTowerUpgrade().hide());
+                if (b) {
+                    drawConsumer.consume(() -> {
+                        gridViewMatrix[field.getRow()][field.getColumn()].setImage(fieldImage).show();
+                        towerUpgradeDialog.getTowerUpgrade().hide();
+                        infoScore.setNumbers(++score);
+
+                    });
+                }
             });
 
             towerUpgradeDialog =  new TowerUpgradeDialog(700,500,
